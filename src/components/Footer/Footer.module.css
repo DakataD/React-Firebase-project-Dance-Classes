@@ -1,0 +1,23 @@
+.footer_wrapper {
+    background-color: #ebebec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: -4px;
+    position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;  
+}
+
+.footer_wrapper a {
+    text-decoration: none;
+    color: gray;
+}
+
+
+.footer_wrapper a:hover{
+    color: black;
+    transform: scale(1.1);
+  }

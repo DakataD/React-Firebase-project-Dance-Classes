@@ -6,16 +6,17 @@ import Login from './components/Login/Login';
 import Catalog from './components/Catalog/Catalog';
 import Create from './components/Create/Create';
 import Register from './components/Register/Register';
+import Footer from './components/Footer/Footer';
 import { useState, useEffect } from 'react';
 import { signOut } from "firebase/auth";
 import {auth} from "../src/firebase/firebase-config";
+import { AuthProvider } from "./contexts/AuthContext";
 
 
 
 function App() {
-  // redux or context maybe?
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -26,12 +27,11 @@ function App() {
       }else {
         setUser("")
       }
-    });
-    
-  }, []);
+    });  
+  }, [user]);
 
 
-  const signUserOut = () => {
+  const logout = () => {
       signOut(auth).then(() => {
         localStorage.clear()
         setIsAuth(false)
@@ -40,27 +40,39 @@ function App() {
       })
     }
   return (
+    <AuthProvider>
   <Router>
+
+    <header>
     <nav className='nav-bar'>
+      <img style={{ width: "80px" }} src="/dance-logo.png" alt="" />
       <Link to="/">Home</Link>
-      {!user  ?<> <Link to="/login">Login</Link> <Link to="/register">Register</Link></>:
+      <Link to="/catalog">Classes</Link>     
+      {!user ?<> 
+      <Link to="/login">Login</Link>
+      <Link to="/register">Register</Link>
+      <span>Hello, Guest</span>
+      </>
+      :
       <>
-      <button className='logout-btn' onClick={signUserOut}>Logout</button>
-      <Link to="/create">Create</Link>
+      <button className='logout-btn' onClick={logout}>Logout</button>
+      <Link to="/create">Create Class</Link>
       <span>Hello, {user.email}</span>
-      </> }  
-      <Link to="/catalog">Catalog</Link>
-      
+      </> }    
     </nav>
+    </header>
+    
     	<Routes>
         <Route path='/' element = {<Home  isAuth={isAuth}/>} />
         <Route path='/login' element = {<Login  setIsAuth={setIsAuth}/>} />
         <Route path='/register' element = {<Register  setIsAuth={setIsAuth}/>} />
-        <Route path='/catalog' element = {<Catalog />} />
-        <Route path='/create' element = {<Create isAuth={isAuth} />} />
-
+        <Route path='/catalog' element = {<Catalog  isAuth={isAuth}/>} />
+        <Route path='/create' element = {<Create user={user} />} />
       </Routes>
+      
+        <Footer/>
   </Router>
+  </AuthProvider>
   );
 }
 

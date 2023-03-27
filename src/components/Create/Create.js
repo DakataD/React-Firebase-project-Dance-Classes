@@ -1,28 +1,32 @@
 import React from "react";
+import styles from "./Create.module.css"
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { db, auth } from "../../firebase/firebase-config";
+import { db, auth, storage } from "../../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { ref, uploadBytes } from "firebase/storage"
+import { v4 } from "uuid";
 
-const Create = ({isAuth}) => {
+const Create = ({user}) => {
 
     const [title, setTitle] = useState("");
     const [comments, setComment] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-
-
-    const onCreatePetSubmitHandler = (e) => {
-        e.preventDefault();
-        console.log(e)
-        const { title, comments, imageUrl } = e.target;
-    }
-
+    const [imageUpload, setImageUpload] = useState(null);
 
     const postCollectionRef = collection(db, "comments");
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
-        const createThink = async () => {
+    const uploadImage = () => {
+        if (imageUpload ==  null) return;
+        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+        uploadBytes(imageRef, imageUpload).then (() => {
+            alert('image has send')
+        })
+    };
+
+        const createDanceClass = async () => {
             await addDoc(postCollectionRef, {
                 title,
                 comments,
@@ -34,12 +38,15 @@ const Create = ({isAuth}) => {
         }
     
         useEffect(() => {
-            if(!isAuth){
+            if(!user){
                 navigate("/");
+                
+            }else {
+                
             }
-        },[])
+        })
 
-    return(<>
+    return(
         <div>
             <h1>Create things</h1>
             {/* replace whit form */}
@@ -48,52 +55,10 @@ const Create = ({isAuth}) => {
             <label>Comments:</label>
             <textarea placeholder="Text...." onChange={(e) => {setComment(e.target.value)}}></textarea>
             <input type="text" name="imageURL" id="image" placeholder="Image" onChange={(e) => {setImageUrl(e.target.value)}} />
-            <button onClick={createThink}>submit post</button>
-        </div>
-        <section className="create">
-            <form onSubmit={onCreatePetSubmitHandler}>
-                <fieldset>
-                    <legend>Add new Pet</legend>
-                    <p className="field">
-                        <label htmlFor="name">Name</label>
-                        <span className="input">
-                            <input type="text" name="name" id="name" placeholder="Name" />
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="description">Description</label>
-                        <span className="input">
-                            <textarea rows="4" cols="45" type="text" name="description" id="description"
-                                placeholder="Description"></textarea>
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="image">Image</label>
-                        <span className="input">
-                            <input type="text" name="imageURL" id="image" placeholder="Image" />
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="category">Category</label>
-                        <span className="input">
-                            <select type="text" name="category">
-                                <option value="Cat">Cat</option>
-                                <option value="Dog">Dog</option>
-                                <option value="Parrot">Parrot</option>
-                                <option value="Reptile">Reptile</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <span className="actions"></span>
-                        </span>
-                    </p>
-                    <input className="button submit" type="submit" value="Add Pet" />
-                </fieldset>
-            </form>
-        </section>
-        </>
+            <input type="file" onChange={(e) => {setImageUpload(e.target.files[0])}}/>
+            <button onClick={() => { createDanceClass(); uploadImage();}}>submit post</button>
+           
+        </div>     
     );
 }
 
