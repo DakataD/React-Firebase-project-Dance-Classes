@@ -1,21 +1,17 @@
 import './App.css';
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import Home from './components/Home/Home';
-import Login from './components/Login/Login';
-import Catalog from './components/Catalog/Catalog';
-import Create from './components/Create/Create';
-import Register from './components/Register/Register';
+import AnimatedRoutes from './components/AnimatedRoutes/AnimateRoutes'
 import Footer from './components/Footer/Footer';
 import { useState, useEffect } from 'react';
 import { signOut } from "firebase/auth";
 import {auth} from "../src/firebase/firebase-config";
 import { AuthProvider } from "./contexts/AuthContext";
-
+import { BackgroundProvider } from "././contexts/BackgroundContext";
 
 
 function App() {
-
+  
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   const [user, setUser] = useState("");
 
@@ -41,12 +37,15 @@ function App() {
     }
   return (
     <AuthProvider>
+        <BackgroundProvider>
   <Router>
 
     <header>
     <nav className='nav-bar'>
-      <img style={{ width: "80px" }} src="/dance-logo.png" alt="" />
-      <Link to="/">Home</Link>
+      
+      <Link to="/" id='logo'>
+      <img style={{ height: "100px" }} src="/dance-logo.png" alt="" />
+      </Link>
       <Link to="/catalog">Classes</Link>     
       {!user ?<> 
       <Link to="/login">Login</Link>
@@ -62,16 +61,12 @@ function App() {
     </nav>
     </header>
     
-    	<Routes>
-        <Route path='/' element = {<Home  isAuth={isAuth}/>} />
-        <Route path='/login' element = {<Login  setIsAuth={setIsAuth}/>} />
-        <Route path='/register' element = {<Register  setIsAuth={setIsAuth}/>} />
-        <Route path='/catalog' element = {<Catalog  isAuth={isAuth}/>} />
-        <Route path='/create' element = {<Create user={user} />} />
-      </Routes>
+    	<AnimatedRoutes />
+
       
         <Footer/>
   </Router>
+  </BackgroundProvider>
   </AuthProvider>
   );
 }

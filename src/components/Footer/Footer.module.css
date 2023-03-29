@@ -1,14 +1,14 @@
 .footer_wrapper {
-    background-color: #ebebec;
+    background-color: #494958;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     margin-top: -4px;
-    position: absolute;
+    position: fixed;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;  
+  height: 2rem;  
 }
 
 .footer_wrapper a {

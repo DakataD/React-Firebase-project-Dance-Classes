@@ -3,8 +3,6 @@
     display: flex;
     margin: auto;
     flex: 0 0 80%;
-    
-    padding:100px 300px 110px 300px ;
 }
 
 .card_wrapper {
@@ -12,9 +10,9 @@
     flex: 1 0 100%;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 55px;
-   
-   
+    gap: 25px;
+   padding-top: 50px;
+   padding-bottom: 50px;
 }
 .card {
     display: flex;
@@ -23,10 +21,13 @@
     border: 5px solid black;
     border-radius: 10px;
     flex-direction: column;
-    width: 24%;
+    width: 25%;
+   
     background-color: rgb(239, 242, 243);
     -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    scale: 0.85;
+    opacity: 0.9;
 }
 .card_wrapper img {
     max-width: 95%;  
@@ -39,9 +40,3 @@ box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15p
     background-color: rgb(221, 182, 219);
 }
 
-.catalog_bg{
- background-image: url('./bc.jpg');
- background-repeat: no-repeat;
-    background-size: cover;
-    width: 100vw;
-}
