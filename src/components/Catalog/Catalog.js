@@ -41,9 +41,9 @@ const Catalog = (isAuth) => {
     <Layout>
       <motion.div
         className={styles.container}
-        initial={{width: 0}}
-        animate={{width: window.innerWidth}}
-        exit={{y: window.innerWidth, transition: {duration: 0.5}}}
+        initial={{rotateX: 90, rotateY: -90, scale: 0}}
+          animate={{rotateX: 0, rotateY: 0, scale: 1 }}
+          exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.4}}}
       >
         <div className={styles.card_wrapper}>
           {danceList.map((post) => {
@@ -60,7 +60,7 @@ const Catalog = (isAuth) => {
                 <p>{post.name}</p>
                 <p>{post.comments}</p>                     
                 <p>{post.email}</p>
-                <Link to="/edit">Edit</Link>
+                <Link to="/details">Details</Link>
               </div>
             )
           })}

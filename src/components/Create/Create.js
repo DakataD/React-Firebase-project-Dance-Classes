@@ -79,9 +79,9 @@ const Create = ({ user }) => {
 
   return (
     <motion.div
-      initial={{ width: 0, scale: 0 }}
-      animate={{ width: window.innerWidth, scale: 1 }}
-      exit={{ y: window.innerHeight, transition: { duration: 0.3 }, scale: 0 }}
+    initial={{rotateX: 90, rotateY: -90, scale: 0}}
+    animate={{rotateX: 0, rotateY: 0, scale: 1 }}
+    exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.4}}}
     >
       <h1>Create post</h1>
       <form onSubmit={(e) => e.preventDefault()}>

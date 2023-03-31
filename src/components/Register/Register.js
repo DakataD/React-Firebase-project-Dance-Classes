@@ -3,6 +3,8 @@ import styles from "../Login/Login.module.css"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
+import {motion} from "framer-motion";
+
 
 const Register = ({ setIsAuth }) => {
   const [errors, setErrors] = useState({});
@@ -55,7 +57,9 @@ const Register = ({ setIsAuth }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <motion.div
+     className={styles.container}
+     >
       <form onSubmit={onRegisterSubmitHandler}>
         <p>Register</p>
         <input type="email" name="email" id="email" placeholder="email" />
@@ -66,7 +70,7 @@ const Register = ({ setIsAuth }) => {
         {errors.repeatPassword && <span className="error">{errors.repeatPassword}</span>}
         <input className="button submit" type="submit" value="Register" />
       </form>
-    </div>
+    </motion.div>
   );
 }
 

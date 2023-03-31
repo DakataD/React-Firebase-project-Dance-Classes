@@ -92,6 +92,7 @@ const Login = () => {
   return (
     <motion.div 
     className={styles.container}
+ 
     >
 
       <form onSubmit={login}>

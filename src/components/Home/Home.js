@@ -17,9 +17,9 @@ useEffect(() => {
         <Layout>  
           <motion.div 
           className={styles.image}
-          initial={{width: 0}}
-          animate={{width: window.innerWidth}}
-          exit={{y: window.innerWidth, transition: {duration: 0.5}}}
+          initial={{rotateX: 90, rotateY: -90, scale: 0}}
+          animate={{rotateX: 0, rotateY: 0, scale: 1 }}
+          exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.4}}}
           >     
                 <article className={styles.info_text_container}>
                 <h1>Hello, Future Dancers</h1> 
