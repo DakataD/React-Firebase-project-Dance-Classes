@@ -56,11 +56,11 @@ const Catalog = (isAuth) => {
                     setRefresh(false)
                   }}>Delete</button>
                 }
-                <img src={post.imageURL} alt="dance" />
+                <img src={post.imageUrl} alt="dance" />
                 <p>{post.name}</p>
-                <p>{post.comments}</p>                     
+                <p>{post.info}</p>                     
                 <p>{post.email}</p>
-                <Link to="/details">Details</Link>
+                <Link className={styles.detailsBtn} to={`/${post.id}/details`}>Details</Link>
               </div>
             )
           })}

@@ -8,6 +8,7 @@ import Create from '../Create/Create';
 import Register from '../Register/Register';
 import {auth} from "../../firebase/firebase-config";
 import {AnimatePresence} from 'framer-motion'
+import Details from '../Details/Details';
 
 function AnimatedRoutes() {
 
@@ -36,6 +37,8 @@ function AnimatedRoutes() {
         <Route path='/register' element = {<Register  setIsAuth={setIsAuth}/>} />
         <Route path='/catalog' element = {<Catalog  isAuth={isAuth}/>} />
         <Route path='/create' element = {<Create user={user} />} />
+        <Route path="/:postId/details" element={<Details />}></Route>
+
       </Routes>
       </AnimatePresence>
     )

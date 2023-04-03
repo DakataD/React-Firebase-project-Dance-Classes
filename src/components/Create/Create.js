@@ -11,7 +11,9 @@ import { motion } from "framer-motion";
 
 const Create = ({ user }) => {
   const [title, setTitle] = useState("");
-  const [comments, setComment] = useState("");
+  const [time, setTime] = useState("");
+  const [teacher, setTeacher] = useState("");
+  const [info, setInfo] = useState("");
   const [imageUpload, setImageUpload] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState({});
@@ -27,8 +29,8 @@ const Create = ({ user }) => {
       newErrors.title = "Title is required.";
     }
 
-    if (!comments) {
-      newErrors.comments = "Comments are required.";
+    if (!info) {
+      newErrors.info = "Info is required.";
     }
 
     if (Object.keys(newErrors).length === 0) {
@@ -39,36 +41,40 @@ const Create = ({ user }) => {
     }
   };
 
-  const uploadImage = () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
-      getDownloadURL(imageRef).then((url) => setImageUrl(url));
-    });
-  };
-
   const createDanceClass = async () => {
     if (!validateForm()) {
       return;
     }
-
-    await uploadImage();
-
-    if (imageUpload) {
-        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-        await uploadBytes(imageRef, imageUpload);
-        const url = await getDownloadURL(imageRef);
-        setImageUrl(url);
-      }
-
+  
+    const imageUrl = await uploadImage();
+  
     await addDoc(postCollectionRef, {
       title,
-      comments,
+      info,
       imageUrl,
+      teacher,
+      time,
       email: auth.currentUser.email,
       personId: auth.currentUser.uid,
     });
-    navigate("/");
+  
+    navigate("/catalog");
+  };
+  
+  const uploadImage = () => {
+    if (imageUpload == null) return Promise.resolve("");
+  
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+  
+    return uploadBytes(imageRef, imageUpload)
+      .then(() => {
+        return getDownloadURL(imageRef);
+      })
+      .then((url) => {
+        setImageUrl(url);
+        return url;
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
@@ -86,7 +92,7 @@ const Create = ({ user }) => {
       <h1>Create post</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <div className={styles.formControl}>
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">Class Name:</label>
           <input
             type="text"
             id="title"
@@ -98,20 +104,46 @@ const Create = ({ user }) => {
           {errors.title && <span className={styles.error}>{errors.title}</span>}
         </div>
         <div className={styles.formControl}>
-          <label htmlFor="comments">Comments:</label>
+          <label htmlFor="info">More Info:</label>
           <textarea
-            id="comments"
-            name="comments"
-            placeholder="Enter comments"
-            value={comments}
-            onChange={(e) => setComment(e.target.value)}
+            id="info"
+            name="info"
+            placeholder="Enter info"
+            value={info}
+            onChange={(e) => setInfo(e.target.value)}
           ></textarea>
-          {errors.comments && <span className={styles.error}>{errors.comments}</span>}
+          {errors.info && <span className={styles.error}>{errors.info}</span>}
         </div>
+
+        <div className={styles.formControl}>
+          <label htmlFor="schedule">Class Schedule:</label>
+          <input
+            type="text"
+            id="schedule"
+            name="schedule"
+            placeholder="Enter schedule"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
+          {errors.title && <span className={styles.error}>{errors.title}</span>}
+        </div>
+
+        <div className={styles.formControl}>
+          <label htmlFor="teacher">Dance Teacher:</label>
+          <input
+            type="text"
+            id="teacher"
+            name="teacher"
+            placeholder="Enter Teacher"
+            value={teacher}
+            onChange={(e) => setTeacher(e.target.value)}
+          />
+          {errors.title && <span className={styles.error}>{errors.title}</span>}
+        </div>
+
         <div className={styles.formControl}>
           <label htmlFor="imageUpload">Image:</label>
           <input
-          
             type="file"
             id="imageUpload"
             name="imageUpload"

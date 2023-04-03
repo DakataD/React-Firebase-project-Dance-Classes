@@ -4,8 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { getAuth,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+    signOut,
   signInWithEmailAndPassword, } from "firebase/auth";
 
   import {
