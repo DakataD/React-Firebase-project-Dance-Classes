@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Link} from "react-router-dom";
 import AnimatedRoutes from './components/AnimatedRoutes/AnimateRoutes'
 import Footer from './components/Footer/Footer';
 import { useState, useEffect } from 'react';
@@ -19,7 +19,6 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if(authUser) {
         setUser(authUser)
-        console.log(user)
       }else {
         setUser("")
       }

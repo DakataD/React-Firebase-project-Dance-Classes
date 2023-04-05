@@ -6,20 +6,16 @@ import { getDocs,collection,deleteDoc,doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase/firebase-config";
 import { v4 } from "uuid";
-import { BackgroundContext } from "../../contexts/BackgroundContext";
-import Layout from "./../Layout/Layout";
 import {motion} from "framer-motion";
+
 
 
 const Catalog = (isAuth) => {
   const [refresh,setRefresh] = useState(false)
   const [danceList, setDanceList] = useState([]);
-  const { setBackgroundImage } = useContext(BackgroundContext);
   const postCollectionRef = collection(db, "comments");
 
-  useEffect(() => {
-    setBackgroundImage("https://images.pexels.com/photos/7974876/pexels-photo-7974876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  }, [setBackgroundImage]);
+
 
   useEffect(() => {
     const getComments = async () => {
@@ -38,9 +34,9 @@ const Catalog = (isAuth) => {
   const currentUserId = 'asdsadsad@abv.bg'
 
   return (
-    <Layout>
+
       <motion.div
-        className={styles.container}
+        className={styles.background}
         initial={{rotateX: 90, rotateY: -90, scale: 0}}
           animate={{rotateX: 0, rotateY: 0, scale: 1 }}
           exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.4}}}
@@ -66,7 +62,6 @@ const Catalog = (isAuth) => {
           })}
         </div>
       </motion.div>
-    </Layout>
   );
 }
 

@@ -14,7 +14,8 @@
   font-weight: bold;
   transition: transform .2s;
   border: none;
-text-shadow: 2px 2px 4px #a7a7a7;
+text-shadow: 2px 2px 4px #000000;
+margin-bottom: 70px;
 }
 
 .nav-bar span{

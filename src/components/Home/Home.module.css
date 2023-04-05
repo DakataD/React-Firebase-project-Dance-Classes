@@ -23,4 +23,10 @@
   .info_text_container h3 {
     font-size: 42px;
   }
-  
+  .background {
+    background: url('https://firebasestorage.googleapis.com/v0/b/softuni-project-50db8.appspot.com/o/site%20images%2Fpexels-marko-zirdum-2188012.jpg?alt=media&token=bbf5ed43-402e-43df-8972-50649ce9027a');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+  }

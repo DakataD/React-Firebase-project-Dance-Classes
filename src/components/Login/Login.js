@@ -91,18 +91,20 @@ const Login = () => {
 
   return (
     <motion.div 
-    className={styles.container}
- 
+    className={styles.background}
+       
     >
 
-      <form onSubmit={login}>
+      <form
+      className={styles.login_form}
+      onSubmit={login}>
         <p>Welcome</p>
         <input
+        
           required
           id="emails"
           type="text"
           name="email"
-          className={styles["login__textBox"]}
           value={input.email}
           placeholder="E-mail Address"
           onChange={onInputChange}
@@ -115,7 +117,6 @@ const Login = () => {
           id="password"
           type="password"
           name="password"
-          className={styles["login__textBox"]}
           value={input.password}
           placeholder="Password"
           onChange={onInputChange}
