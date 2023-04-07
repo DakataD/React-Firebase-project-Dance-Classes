@@ -97,17 +97,16 @@ const Edit = ({ user }) => {
 
   return (
     <motion.div
-      initial={{ rotateX: 90, rotateY: -90, scale: 0 }}
-      animate={{ rotateX: 0, rotateY: 0, scale: 1 }}
-      exit={{ rotateX: -90, rotateY: 90, scale: 0, transition: { duration: 0.4 } }}
+    className={styles.background}
+    initial={{rotateX: 90, rotateY: -90, scale: 0}}
+    animate={{rotateX: 0, rotateY: 0, scale: 1 }}
+    exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.15}}}
     >
+       <div className={styles.wrapper}>
       <h1>Edit post</h1>
       <form onSubmit={(e) => e.preventDefault()}>
-        <div className={styles.formControl}>
-          
-     
-    </div>
-    <div className={styles.formControl}>
+       
+    <div>
       <label htmlFor="title">Class Name:</label>
       <input
         type="text"
@@ -165,6 +164,7 @@ const Edit = ({ user }) => {
       Update
     </button>
   </form>
+  </div>
 </motion.div>
 );
 };

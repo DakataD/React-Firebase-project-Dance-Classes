@@ -85,13 +85,15 @@ const Create = ({ user }) => {
 
   return (
     <motion.div
+    className={styles.background}
     initial={{rotateX: 90, rotateY: -90, scale: 0}}
-    animate={{rotateX: 0, rotateY: 0, scale: 1 }}
-    exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.4}}}
-    >
+          animate={{rotateX: 0, rotateY: 0, scale: 1 }}
+          exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.15}}}
+    > 
+    <div className={styles.wrapper}>
       <h1>Create post</h1>
       <form onSubmit={(e) => e.preventDefault()}>
-        <div className={styles.formControl}>
+        <div className={styles.createForm}>
           <label htmlFor="title">Class Name:</label>
           <input
             type="text"
@@ -155,6 +157,7 @@ const Create = ({ user }) => {
         </div>
         <button onClick={() => createDanceClass()}>Submit</button>
         </form>
+        </div>
 </motion.div>
 );
 };

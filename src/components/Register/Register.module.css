@@ -24,12 +24,6 @@
   border-bottom: 4px solid white;
 }
  
-.login_form a {
-  text-decoration: none;
-  color: #656667;
-  font-size: 18px;
-  font-weight: 100;
-}
 
 
 
@@ -39,7 +33,7 @@
 }
 
 .login_form input {
-  background: transparent;
+  background: rgb(255, 255, 255);
   width: 200px;
   padding: 1em;
   margin-bottom: 2em;
@@ -59,10 +53,12 @@
   margin-top: 10px;
   width: 150px;
   font-size: 1rem;
+  color: #000000;
 }
 
 
 ::placeholder {
+  font-weight: 400;
   color: #323131;
   text-shadow: #000000;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.4);

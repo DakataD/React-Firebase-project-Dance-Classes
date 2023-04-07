@@ -1,3 +1,91 @@
 .detailsImage {
-    width: 500px;
+    height: 50vh;
+    width: 23vw;
+    padding: 2rem;  
 }
+
+.imageWrapper{
+    border-radius: 20px;
+    
+}
+
+.background {
+    background: url('https://firebasestorage.googleapis.com/v0/b/softuni-project-50db8.appspot.com/o/site%20images%2Fpexels-wesley-davi-3622614.jpg?alt=media&token=1a1cc086-7109-441b-8a7a-2bd2b04546fd');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Luckiest Guy', cursive;
+  }
+
+  .detailWrapper {
+    background-color: rgb(251, 250, 225);
+    height: 70vh;
+    width: 60vw;
+    border-radius: 10px;
+    display: flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-direction: row;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    
+  }
+
+  .textWrapper {
+    overflow: hidden;
+    word-break:keep-all;
+    padding: 10px;
+    margin-top: 0;
+    text-align:left;
+ 
+  }
+
+
+  .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+
+  .buttons button, .editButton {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    height: 1.3rem;
+    width: 4rem;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Luckiest Guy', cursive;
+    background-color: rgb(242, 182, 104);
+  }
+
+  .buttons button:hover {
+   
+    scale: 1.2;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  }
+
+  .buttons a:hover {
+    scale: 1.2;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  }
+
+  .buttons .interestButton {
+  font-size: 13px;  
+  width: 8rem;
+  }
+
+
+  .interestetText{
+    color: rgb(242, 182, 104);
+  text-shadow: 1px 2px 4px rgba(1,1,1,1.2);
+
+  }

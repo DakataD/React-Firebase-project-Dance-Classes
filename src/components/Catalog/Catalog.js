@@ -1,6 +1,6 @@
 import styles from "./Catalog.module.css"
 import React from "react";
-import { useEffect,useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { getDocs,collection,deleteDoc,doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
@@ -39,7 +39,7 @@ const Catalog = (isAuth) => {
         className={styles.background}
         initial={{rotateX: 90, rotateY: -90, scale: 0}}
           animate={{rotateX: 0, rotateY: 0, scale: 1 }}
-          exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.4}}}
+          exit={{rotateX: -90, rotateY: 90, scale: 0,transition:{duration: 0.15}}}
       >
         <div className={styles.card_wrapper}>
           {danceList.map((post) => {
@@ -54,8 +54,8 @@ const Catalog = (isAuth) => {
                 }
                 <img src={post.imageUrl} alt="dance" />
                 <p>{post.name}</p>
-                <p>{post.info}</p>                     
-                <p>{post.email}</p>
+                <p>Teacher: {post.teacher}</p>                     
+                <p>{post.time}</p>
                 <Link className={styles.detailsBtn} to={`/${post.id}/details`}>Details</Link>
               </div>
             )

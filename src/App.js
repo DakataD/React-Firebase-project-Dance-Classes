@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { signOut } from "firebase/auth";
 import {auth} from "../src/firebase/firebase-config";
 import { AuthProvider } from "./contexts/AuthContext";
-import { BackgroundProvider } from "././contexts/BackgroundContext";
+
 
 
 function App() {
@@ -35,13 +35,10 @@ function App() {
       })
     }
   return (
-    <AuthProvider>
-        <BackgroundProvider>
+    <AuthProvider>   
   <Router>
-
     <header>
     <nav className='nav-bar'>
-      
       <Link to="/" id='logo'>
       <img style={{ height: "100px" }} src="/dance-logo.png" alt="" />
       </Link>
@@ -59,13 +56,9 @@ function App() {
       </> }    
     </nav>
     </header>
-    
     	<AnimatedRoutes />
-
-      
         <Footer/>
   </Router>
-  </BackgroundProvider>
   </AuthProvider>
   );
 }

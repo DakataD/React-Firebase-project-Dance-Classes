@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../Login/Login.module.css"
+import styles from "./Register.module.css"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -58,9 +58,10 @@ const Register = ({ setIsAuth }) => {
 
   return (
     <motion.div
-     className={styles.container}
+     className={styles.background}
      >
-      <form onSubmit={onRegisterSubmitHandler}>
+      <form onSubmit={onRegisterSubmitHandler}
+      className={styles.login_form}>
         <p>Register</p>
         <input type="email" name="email" id="email" placeholder="email" />
         {errors.email && <span className="error">{errors.email}</span>}
@@ -68,7 +69,7 @@ const Register = ({ setIsAuth }) => {
         {errors.password && <span className="error">{errors.password}</span>}
         <input type="password" name="repeatPassword" id="repeatPassword" autoComplete="on" placeholder="Repeat Password" />
         {errors.repeatPassword && <span className="error">{errors.repeatPassword}</span>}
-        <input className="button submit" type="submit" value="Register" />
+        <input className="submitButton" type="submit" value="Register" />
       </form>
     </motion.div>
   );

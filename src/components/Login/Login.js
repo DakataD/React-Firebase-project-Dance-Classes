@@ -100,7 +100,6 @@ const Login = () => {
       onSubmit={login}>
         <p>Welcome</p>
         <input
-        
           required
           id="emails"
           type="text"
@@ -128,7 +127,7 @@ const Login = () => {
         )}
         <input type="submit" className="submitButton" value="Sing In" />
         <div>
-          Don't have an account? <Link to="/register">Register</Link>
+          Don't have an account? <Link to="/register">Register &#8594;</Link>
 
 
             </div>                          
